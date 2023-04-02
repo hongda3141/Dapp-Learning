@@ -10,6 +10,7 @@ describe('ERC1820 logic', async () => {
 
   beforeEach(async function () {
     owner = await ethers.getSigner();
+    // console.log(owner);
     //1. Prepare root transaction
     let deployTx = {
       nonce: ethers.utils.hexlify(0),
@@ -34,6 +35,7 @@ describe('ERC1820 logic', async () => {
     console.log("deployer address:", recoveredAddress)
     //4. Fund the transaction
     let fundTx = {to: recoveredAddress, value: ethers.utils.parseEther("0.08")}
+    console.log(fundTx);
     await (await owner.sendTransaction(fundTx)).wait()
     console.log(`address ${recoveredAddress} has ${Number(await provider.getBalance(recoveredAddress))} wei`);
     //5. Send deploy transaction
@@ -45,7 +47,9 @@ describe('ERC1820 logic', async () => {
  1
 
   it('Demo usage', async () => {
-    let user = (await ethers.getSigners())[1];
+    // let user = (await ethers.getSigners())[1];
+    let user = (await ethers.getSigners())[0];
+    // let user = (await ethers.getSigners())[1];
     
     let funcSig = await ethers.utils.keccak256(ethers.utils.toUtf8Bytes('callback(uint256)'));
     //1. Deploy demo implementer
@@ -58,6 +62,8 @@ describe('ERC1820 logic', async () => {
       user.address, funcSig, demoImplementer.address, {gasLimit:80000});
     let implementer = await erc1820.getInterfaceImplementer(user.address, funcSig);
     expect(implementer).to.equal(demoImplementer.address);
+    console.log(implementer);
+    console.log(demoImplementer.address);
 
     //3. Deploy && call consumer
     let DemoConsumer = await ethers.getContractFactory("DemoConsumer");
@@ -65,6 +71,8 @@ describe('ERC1820 logic', async () => {
     await demoConsumer.deployed();
     
     let receipt = await (await demoConsumer.connect(user).doSomething()).wait();
+    // console.log("receipt is :");
+    // console.log(receipt);
   })
 
 })

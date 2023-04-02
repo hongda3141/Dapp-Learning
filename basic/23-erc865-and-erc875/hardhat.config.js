@@ -44,34 +44,46 @@ module.exports = {
       accounts: {
         // mnemonic: 'test test test test test test test test test test test junk', //助记池 BIP39 定义的 12 或 24 个单词的助记词。默认值：""
         // count: 3,
+        // mnemonic: "rain avocado wreck advice winner unfold egg sketch fragile weird wealth spawn",
       },
     },
     localhost: {
-      url: 'http://localhost:8545',
+      url: 'http://localhost:8545', // 8545   8000
       //gasPrice: 125000000000,//you can adjust gasPrice locally to see how much it will cost on production
       /*
         notice no mnemonic here? it will just use account 0 of the hardhat node to deploy
         (you can put in a mnemonic here to set the deployer locally)
       */
     },
-    rinkeby: {
-      url: 'https://rinkeby.infura.io/v3/' + process.env.INFURA_ID, //<---- YOUR INFURA ID! (or it won't work)
-      accounts: [mnemonic(), mnemonicAlice()],
-      gas: 2100000,
-      gasPrice: 8000000000,
+    axon: {
+      url: 'http://localhost:8000', // 8545   8000
+      accounts: ["37aa0f893d05914a4def0460c0a984d3611546cfb26924d7a7ca6e0db9950a2d"]
+              // "37aa0f893d05914a4def0460c0a984d3611546cfb26924d7a7ca6e0db9950a2d"
+                 
+      //gasPrice: 125000000000,//you can adjust gasPrice locally to see how much it will cost on production
+      /*
+        notice no mnemonic here? it will just use account 0 of the hardhat node to deploy
+        (you can put in a mnemonic here to set the deployer locally)
+      */
     },
-    kovan: {
-      url: 'https://kovan.infura.io/v3/' + +process.env.INFURA_ID, //<---- YOUR INFURA ID! (or it won't work)
-      accounts: [mnemonic()],
-    },
-    mainnet: {
-      url: 'https://mainnet.infura.io/v3/' + +process.env.INFURA_ID, //<---- YOUR INFURA ID! (or it won't work)
-      accounts: [mnemonic()],
-    },
-    ropsten: {
-      url: 'https://ropsten.infura.io/v3/' + +process.env.INFURA_ID, //<---- YOUR INFURA ID! (or it won't work)
-      accounts: [mnemonic()],
-    },
+    // rinkeby: {
+    //   url: 'https://rinkeby.infura.io/v3/' + process.env.INFURA_ID, //<---- YOUR INFURA ID! (or it won't work)
+    //   accounts: [mnemonic(), mnemonicAlice()],
+    //   gas: 2100000,
+    //   gasPrice: 8000000000,
+    // },
+    // kovan: {
+    //   url: 'https://kovan.infura.io/v3/' + +process.env.INFURA_ID, //<---- YOUR INFURA ID! (or it won't work)
+    //   accounts: [mnemonic()],
+    // },
+    // mainnet: {
+    //   url: 'https://mainnet.infura.io/v3/' + +process.env.INFURA_ID, //<---- YOUR INFURA ID! (or it won't work)
+    //   accounts: [mnemonic()],
+    // },
+    // ropsten: {
+    //   url: 'https://ropsten.infura.io/v3/' + +process.env.INFURA_ID, //<---- YOUR INFURA ID! (or it won't work)
+    //   accounts: [mnemonic()],
+    // },
   },
   mocha: {
     timeout: 60000,
